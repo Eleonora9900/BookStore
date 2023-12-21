@@ -37,12 +37,14 @@ namespace BookStore_DL.MemoryDB
             new Book()
             {
                 Id = 01,
-                Name = "Book 1"
+                Name = "Book 1",
+                AuthorId = 2
             },
             new Book() 
             {
                 Id = 02,
-                Name = "Book 2"
+                Name = "Book 2",
+                AuthorId = 3
             }
         };
     }
