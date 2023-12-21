@@ -30,5 +30,20 @@ namespace BookStore_DL.MemoryDB
                 BirthDay = DateTime.Now
             }
         };
+
+
+        public static List<Book> BookData = new List<Book>()
+        {
+            new Book()
+            {
+                Id = 01,
+                Name = "Book 1"
+            },
+            new Book() 
+            {
+                Id = 02,
+                Name = "Book 2"
+            }
+        };
     }
 }
