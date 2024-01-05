@@ -24,7 +24,12 @@ namespace BookStore_DL.Repositories
 
         public List<Book> GetAll()
         {
-            return InMemoryDB.BookData; 
+            return InMemoryDB.BookData;
+        }
+
+        public List<Book> GetAllByAuthorId(int authorId)
+        {
+            return InMemoryDB.BookData.Where(b => b.AuthorId == authorId).ToList();
         }
 
         public Book? GetById(int id)

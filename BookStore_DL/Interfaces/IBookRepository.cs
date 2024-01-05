@@ -8,6 +8,8 @@ namespace BookStore_DL.Interfaces
     {
         List<Book> GetAll();
 
+        List<Book> GetAllByAuthorId(int authorId);
+
         Book? GetById(int id);
 
         void Add(Book book);
