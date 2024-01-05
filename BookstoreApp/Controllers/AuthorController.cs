@@ -27,7 +27,7 @@ namespace BookstoreApp.Controllers
             return _authorService.GetById(id);
         }
 
-        [HttpGet("Add")]
+        [HttpPost("Add")]
         public void Add([FromBody] Author author)
         { 
             _authorService.Add(author);

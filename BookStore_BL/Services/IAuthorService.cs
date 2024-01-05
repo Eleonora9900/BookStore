@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using BookStore_BL.Interfaces;
 using BookStore_DL.Interfaces;
 using BookStore_Models.Models;
