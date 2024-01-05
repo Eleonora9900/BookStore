@@ -15,11 +15,9 @@ public class LibraryService : ILibraryService
 
     public GetAllBookByAuthorResponse GetAllBookByAuthorAfterDate(GetAllBookByAuthorRequest request)
     {
-        var result = new GetAllBookByAuthorResponse()
-        {
-            Author = _authorService.GetById(int id);
-            Books = _bookService.GetAllByAuthorId(request.AuthorId);
-        }
+        var result = new GetAllBookByAuthorResponse();
+        result.Author = _authorService.GetById(request.AuthorId);
+        result.Books = _bookService.GetAllByAuthorId(request.AuthorId);
         return result;
     }
 
