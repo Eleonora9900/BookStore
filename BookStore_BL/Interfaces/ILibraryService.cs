@@ -5,6 +5,11 @@ namespace BookStore_BL.Interfaces
     {
         public GetAllBookByAuthorResponse
             GetAllBookByAuthorAfterDate(GetAllBookByAuthorRequest request);
+
+        int CheckBookCount(int input);
+
+        int CheckAuthorCount(int input);
     }
+
 }
 
