@@ -21,6 +21,14 @@ namespace BookstoreApp.Controllers
         {
             return _libraryService.GetAllBookByAuthorAfterDate(request);
         }
+
+        [HttpPost("TestEndPoint")]
+        public string TestEndPoint([FromBody]
+
+            GetAllBookByAuthorRequest request)
+        {
+            return "Ok";
+        }
     }
 
  
