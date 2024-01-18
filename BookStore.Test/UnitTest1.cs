@@ -102,25 +102,29 @@ namespace BookStore.Test
         }
 
         [Fact]
-        public void GetAllBookByAuthorRequest_OK()
+        public void GetAllBookByAuthorAfterDate_OK()
         {
             //setup
             var request = new GetAllBookByAuthorRequest
             {
-                AuthorId = 1,
+                AuthorId = 2,
                 AfterDate = DateTime.Now,
             };
+
+            var expectedCount = 1;
 
             var mockedAuthorRepository = new Mock<IAuthorRepository>();
             var mockedBookRepository = new Mock<IBookRepository>();
 
             mockedAuthorRepository.Setup(
                 x => x.GetById(request.AuthorId))
-                .Returns(AuthorData!.FirstOrDefault(a=> a.Id == request.AuthorId);
+                .Returns(AuthorData!.FirstOrDefault(a=> a.Id == request.AuthorId));
 
             mockedBookRepository.Setup(
                 x => x.GetAllByAuthorId(request.AuthorId))
-                .Returns(BookData);
+                .Returns(BookData
+                .Where(b => b.AuthorId == request.AuthorId)
+                .ToList());
 
             //inject
             var bookService = new BookService(mockedBookRepository.Object);
@@ -132,7 +136,9 @@ namespace BookStore.Test
             var result = service.GetAllBookByAuthorAfterDate(request);
 
             //Assert
-            
+            Assert.NotNull(result);
+            Assert.Equal(expectedCount, result!.Books.Count);
+            Assert.Equal(request.AuthorId, result.Author.Id);
         }
     }
 }
