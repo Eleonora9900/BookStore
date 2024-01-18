@@ -2,6 +2,9 @@ using BookStore_BL.Interfaces;
 using BookStore_BL.Services;
 using BookStore_DL.Interfaces;
 using BookStore_DL.Repositories;
+using BookStore.HealthChecks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookstoreApp
@@ -24,6 +27,10 @@ namespace BookstoreApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
+            builder.Services.AddHealthChecks().AddCheck<CustomHealthCheck>(nameof(CustomHealthCheck));
 
             var app = builder.Build();
 
