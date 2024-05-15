@@ -17,9 +17,9 @@ namespace BookstoreApp.Controllers
 
 
         [HttpPost("GetAllBooksByAuthorId")]
-        public GetAllBookByAuthorResponse GetAllBookByAuthorAfterDate(GetAllBookByAuthorRequest request)
+        public async Task<GetAllBookByAuthorResponse> GetAllBookByAuthorAfterDate(GetAllBookByAuthorRequest request)
         {
-            return _libraryService.GetAllBookByAuthorAfterDate(request);
+            return await _libraryService.GetAllBookByAuthorAfterDate(request);
         }
 
         [HttpPost("TestEndPoint")]

@@ -1,4 +1,5 @@
 using BookStore_BL.Interfaces;
+using BookStore_BL.Services;
 using BookStore_Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,26 +18,35 @@ namespace BookstoreApp.Controllers
         }
 
         [HttpGet( "GetAll")]
-        public IEnumerable<Author> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return _authorService.GetAll();
+            var result = await _authorService.GetAll();
+            if (result == null && result.Count == 0) return NotFound();  
+            return Ok(result);  
         }
         [HttpGet("GetById")]
-        public Author? GetById(int id) 
-        { 
-            return _authorService.GetById(id);
+        public async Task<IActionResult> GetById(int id) 
+        {
+            if (id < 0) return BadRequest(id);
+            var result = await _authorService.GetById(id);
+            return result != null ? Ok(result) : NotFound(id);
         }
 
         [HttpPost("Add")]
-        public void Add([FromBody] Author author)
-        { 
-            _authorService.Add(author);
+        public async Task<IActionResult> Add([FromBody] Author author)
+        {
+            if (author == null) return BadRequest(author);
+            await _authorService.Add(author);
+
+            return Ok();
         }
 
-        [HttpGet("Delete")]
-        public void Delete(int id)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(int id)
         {
-            _authorService.Delete(id);
+            if (id < 0) return BadRequest(id);
+            await _authorService.Delete(id);
+            return Ok();
         }
     }
 }

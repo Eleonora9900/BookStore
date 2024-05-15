@@ -6,14 +6,15 @@ using BookStore_Models.Models;
 
 namespace BookStore_DL.Repositories
 {
-    public class BookRepository : IBookRepository
-    {
+    public class BookRepository // : IBookRepository
+    {     
+
         public void Add(Book book)
         {
             InMemoryDB.BookData.Add(book);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var book = GetById(id);
             if (book != null) 
@@ -32,7 +33,7 @@ namespace BookStore_DL.Repositories
             return InMemoryDB.BookData.Where(b => b.AuthorId == authorId).ToList();
         }
 
-        public Book? GetById(int id)
+        public Book? GetById(Guid id)
         {
             return InMemoryDB.BookData.FirstOrDefault(b => b.Id == id);
         }

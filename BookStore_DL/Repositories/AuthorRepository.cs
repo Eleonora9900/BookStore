@@ -9,9 +9,9 @@ using BookStore_Models.Models;
 
 namespace BookStore_DL.Repositories
 {
-    public class AuthorRepository : IAuthorRepository
+    public class AuthorRepository //: IAuthorRepository
     {
-        public void Add(Author author)
+        public  void Add(Author author)
         {
             InMemoryDB.AuthorData.Add(author);
         }
