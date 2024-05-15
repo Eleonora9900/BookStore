@@ -9,12 +9,12 @@ namespace BookStore_DL.Interfaces
 {
     public interface IAuthorRepository
     {
-        List<Author> GetAll();
+        Task<List<Author>> GetAll();
 
-        Author? GetById(int id);
+        Task<Author?> GetById(int id);
 
-        void Add(Author author);
+        Task Add(Author author);
 
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

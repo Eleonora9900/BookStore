@@ -18,27 +18,38 @@ namespace BookstoreApp.Controllers
         }
 
         [HttpGet("Get All")]
-        public IEnumerable<Book> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return _bookService.GetAll();
+           var result = await _bookService.GetAll();
+            if (result != null && result.Count > 0) return NoContent();
+            return Ok(result);
         }
 
         [HttpPost("Add")]
-        public void Add([FromBody] Book book)
+        public async Task<IActionResult> Add([FromBody] Book book)
         {
-            _bookService.Add(book);
+            if (book == null) return BadRequest(book);
+            await _bookService.Add(book);
+
+            return Ok();
         }
 
         [HttpGet("GetById")]
-        public Book? GetById(int id)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            return _bookService.GetById(id);
+
+            //if (id < 0)  return BadRequest(id);
+
+            var result = await _bookService.GetById(id);
+            return result != null ? Ok(result) : NotFound(id);
         }
 
         [HttpDelete("Delete")]
-        public void DeleteById(int id) 
+        public async Task<IActionResult> DeleteById(Guid id) 
         {
-            _bookService.Delete(id);
+            //if (id<0) return BadRequest(id);
+            await _bookService.Delete(id);
+            return Ok();
         }
 
     }

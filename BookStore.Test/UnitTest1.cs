@@ -16,13 +16,13 @@ namespace BookStore.Test
             new Book()
             {
                 Id = 01,
-                Name = "Book 1",
+                Title = "Book 1",
                 AuthorId = 2
             },
             new Book()
             {
                 Id = 02,
-                Name = "Book 2",
+                Title = "Book 2",
                 AuthorId = 3
             }
         };

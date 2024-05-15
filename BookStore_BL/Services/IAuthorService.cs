@@ -14,24 +14,24 @@ namespace BookStore_BL.Services
             _authorRepository = authorRepository;
         }
 
-        public void Add(Author author)
+        public async Task Add(Author author)
         {
-            _authorRepository.Add(author);
+            await _authorRepository.Add(author);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _authorRepository.Delete(id);
+            await _authorRepository.Delete(id);
         }
 
-        public List<Author> GetAll()
+        public async Task<List<Author>> GetAll()
         {
-            return _authorRepository.GetAll();  
+            return await _authorRepository.GetAll();  
         }
 
-        public Author? GetById(int id)
+        public async Task<Author?> GetById(int id)
         {
-            return _authorRepository.GetById(id);
+            return await _authorRepository.GetById(id);
         }
     }
 }

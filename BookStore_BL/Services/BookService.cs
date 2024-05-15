@@ -19,30 +19,30 @@ namespace BookStore_BL.Services
             _bookRepository = bookRepository;
         }
 
-        public void Add(Book book)
+        public async Task Add(Book book)
         {
-            _bookRepository.Add(book);
+             await _bookRepository.Add(book);
         }
 
-        public void Delete(int id)
+        public async Task Delete(Guid id)
         {
-            _bookRepository.Delete(id);
+            await _bookRepository.Delete(id);
         }
 
    
-        public List<Book> GetAll()
+        public async Task<List<Book>> GetAll()
         {
-            return _bookRepository.GetAll();
+            return await _bookRepository.GetAll();
         }
 
-        public List<Book> GetAllByAuthorId(int authorId)
+        public async Task<List<Book>> GetAllByAuthorId(int authorId)
         {
-            return _bookRepository.GetAllByAuthorId(authorId);
+            return await _bookRepository.GetAllByAuthorId(authorId);
         }
 
-        public Book? GetById(int id)
+        public async Task<Book?> GetById(Guid id)
         {
-            return _bookRepository.GetById(id);
+            return await _bookRepository.GetById(id);
         }
     }
 }
